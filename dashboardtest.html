@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Management Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <style>
+        /* styles.css */
+        body {
+            font-family: Arial, sans-serif;
+            padding: 0;
+            margin: 0;
+            background-color: #f8f9fa;
+            color: #383a3b;
+            font-family: 'Playfair Display', serif;
+            height: 100vh;
+            background-image: url('img/background4.png'); /* Background image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        header {
+            background-color: #0a0a4e;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        nav {
+            background-color: #0a0a4e;
+            color: #fff;
+            text-align: center;
+            width: 200px;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            margin: 0;
+            padding: 10px;
+        }
+        a {
+            text-decoration: none;
+            color: #fff;
+        }
+        .main-content {
+            padding-top: 60px; /* Height of fixed header */
+            padding-left: 220px; /* Width of fixed sidebar */
+            padding-right: 20px; /* Adjusted padding */
+            padding-bottom: 20px; /* Adjusted padding */
+            display: flex;
+            flex-wrap: wrap;
+            height: calc(100vh - 60px); /* Adjusted height */
+        }
+        .section {
+            background-color: #ffffffab;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-right: 20px;
+            margin-bottom: 20px;
+            flex-grow: 1;
+            flex-basis: calc(33.33% - 200px); /* Adjusted width */
+            max-height: calc(100vh - 270px);
+        }
+        .section:nth-child(3) {
+            flex-basis: calc(100% - 200px); /* Adjusted width */
+        }
+        .section h2 {
+            margin-top: 0;
+        }
+        .action-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 0;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .bar-graph {
+            height: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        @media only screen and (max-width: 768px) {
+            nav {
+                width: 0;
+            }
+            .main-content {
+                padding-left: 0;
+                padding-top: 60px;
+            }
+        }
+        .space{
+             padding: 1px;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Attendance Management Dashboard</h1>
+</header>
+<nav>
+    <ul>
+        <li><a></a></li><br>
+        <li><a></a></li><br>
+        <li><a href="/website/dashboardtest.html">Dashboard</a></li>
+        <li><a href="/website/Attendance-records.html">Attendance Records</a></li>
+        <li><a href="http://localhost/website/qr-code-attendance-system/">Qr Code Scanner</a></li>
+        <li><a href="http://localhost/website/website.php">Logout</a></li>
+    </ul>
+</nav>
+<div class="space">
+    <h2>space</h2>
+</div>
+
+<div class="main-content">
+    <div class="section attendance-summary">
+        <h2>Today's Attendance Overview</h2>
+        <p>Total Students: <span id="total-students">31</span></p>
+        <p>Present: <span id="present-students">30</span></p>
+        <p>Absent: <span id="absent-students">1</span></p>
+    </div>
+    <div class="section attendance-list" style="overflow-y: auto;">
+        <h2>Student List</h2>
+        <ul>
+            <li> Neal Aaron Alvarez </li>
+            <li> Ronne Harlie Balonso </li>
+            <li> Marc Angelo Bongar </li>
+            <li> Rylee Alyxiz Cardiño </li>
+            <li> Mark Anthony Domingo </li>
+            <li> Jhann Henrie Dueñas </li>
+            <li> Kevin Gabriel Gonzales  </li>
+            <li> Adrian Rafael Inocando </li>
+            <li> Gabriel Miguel Magtalas </li>
+            <li> Venise Rodge Maniego </li>
+            <li> Kenneth Mariano </li>
+            <li> John Flovd Arvey Navarro </li>
+            <li> Renz Moisés Natividad </li>
+            <li> Carl Loren Pahayahay </li>
+            <li> Harvey Pengson </li>
+            <li> Jose Miguel Samson </li>
+            <li> Tristan Patrick San Roque </li>
+            <li> Ralph Tristan Santos </li>
+            <li> John Leigh Ric Vinoya </li>
+            <li> Carl Gabriel Vitalista </li>
+            <li> Jociel Abellana </li>
+            <li> Micah Daniela Cayetano </li>
+            <li> Reina Trishia Cuestas </li>
+            <li> Shemiah Pearl Cuestas </li>
+            <li> Khryztine Angela Leoncio </li>
+            <li> Francine Martinez </li>
+            <li> Nicole Masadao </li>
+            <li> Nicole Peñalosa </li>
+            <li> Arisa Sakakibara </li>
+            <li> Charlotte Theseira Theseira </li>
+            <li> Angela Jade Yasis </li>
+        </ul>
+    </div>
+    <div class="section bar-graph-container"style="overflow-y: auto;">
+        <h2>Attendance Overview Graph</h2>
+        <div id="myChart" class="bar-graph"></div>
+    </div>
+</div>
+
+<script>
+    google.charts.load('current', {'packages': ['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        const data = google.visualization.arrayToDataTable([
+            ['Attendance Status', 'Count'],
+            ['Present', 30],
+            ['Absent', 1]
+        ]);
+
+        const options = {
+            title: 'Attendance Overview',
+            colors: ['#4CAF50', '#F44336']
+        };
+
+        const chart = new google.visualization.BarChart(document.getElementById('myChart'));
+        chart.draw(data, options);
+    }
+</script>
+</body>
+</html>
+
